@@ -1,22 +1,48 @@
-name: Deploying Hexo project to GitHub pages
+name: Pages
+
 on:
   push:
     branches:
-      - main
+      - main # default branch
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-
-      - name: Build and Deploy
-        uses: theme-keep/hexo-deploy-github-pages-action@master
-        env:
-          PERSONAL_TOKEN: ${{ secrets.HEXO_DEPLOY }}
-          PUBLISH_REPOSITORY: theme-keep/hexo-theme-keep-starter
-          BRANCH: gh-pages
-          CNAME: keep-start.xpoet.cn
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
