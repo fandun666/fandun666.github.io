@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Keep
-subtitle: Hexo theme keep quick starter
+title: 梵顿小屋
+subtitle: Keep writing and Keep loving.
 description: ''
 keywords:
-author: Keep Team
-language: en  # en | zh-CN | zh-TW
+author: fandun666
+language: zh-CN  # en | zh-CN | zh-TW
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://fandun666.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -98,6 +98,15 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: keep
+
+# 资源压缩
+all_minifier: true
+
+search:
+  path: search.json
+  field: post
+  content: true
+  format: striptags
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

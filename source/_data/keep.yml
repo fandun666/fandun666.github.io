@@ -12,10 +12,10 @@ base_info:
   primary_color: "#0066cc"
 
   # Blog website title
-  title: Keep Theme
+  title: 梵顿小屋
 
   # Blog website author name
-  author: Keep Team
+  author: fandun666
 
   # Author avatar, You can use local image path or image link
   avatar: /images/avatar.svg
@@ -36,7 +36,7 @@ menu:
   Archives: /archives
   Tags: /tags
   Categories: /categories
-  # Links: /links
+  Links: /links
   # About: /about
   # Changelog: /changelog
   # Photos: /photos
@@ -47,7 +47,8 @@ menu:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/first_screen.html
 # ---------------------------------------------------------------------------------------
 first_screen:
-  enable: false  # Option values: true | false
+  enable: true  # Option values: true | false
+  header_transparent: false
 
   # First screen background image in light mode, You can use local image path or image link
   background_img: /images/bg.svg
@@ -60,8 +61,7 @@ first_screen:
   description: Keep writing and Keep loving.
 
   # If enable hitokoto, first screen description is different every time when you enter the website
-  hitokoto: false      # Option values: true | false
-
+  hitokoto: true      # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/social_contact.html
@@ -88,7 +88,7 @@ social_contact:
 # ---------------------------------------------------------------------------------------
 scroll:
   # Show progress bar in top when page scroll
-  progress_bar: false  # Option values: true | false
+  progress_bar: true  # Option values: true | false
 
   # Show percent when page scroll
   percent: true       # Option values: true | false
@@ -156,8 +156,8 @@ code_block:
   # Toolbar include: "code copy", "code block collapse" and "code language"
   tools:
     enable: true            # Option values: true | false
-    style: default           # Option values: default | mac
-  highlight_theme: default   # Option values: default | obsidian
+    style: mac           # Option values: default | mac
+  highlight_theme: obsidian   # Option values: default | obsidian
 
 
 # ---------------------------------------------------------------------------------------
@@ -288,8 +288,8 @@ lazyload:
 # Docs: https://keep-docs.xpoet.cn/basis/configuration-guide/cdn.html
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false       # Option values: true | false
-  provider: cdnjs     # Option values: cdnjs | jsdelivr | unpkg
+  enable: true       # Option values: true | false
+  provider: jsdelivr     # Option values: cdnjs | jsdelivr | unpkg
 
 
 # ---------------------------------------------------------------------------------------
@@ -304,7 +304,7 @@ pjax:
 # ---------------------------------------------------------------------------------------
 footer:
   since: 2020           # The starting year of your website, Can be null
-  word_count: false     # Option values: true | false
+  word_count: true     # Option values: true | false
 
   icp:
     enable: false                    # Option values: true | false
@@ -312,7 +312,7 @@ footer:
     url: https://beian.miit.gov.cn   # Your ICP link url, Can be null
 
   site_deploy:
-    enable: false        # Option values: true | false
+    enable: true        # Option values: true | false
     provider: github     # Option values: github | vercel | netlify | gitee | aliyun | tencent_cloud | upyun
     url:                 # Your deployment provider url, Can be null
 
