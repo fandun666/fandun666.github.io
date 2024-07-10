@@ -2,7 +2,7 @@
 title: Android Developers 应用架构
 date: 2024-07-10 19:54:38
 tags: [Android]
-categories: [Android Developers]
+categories: [应用架构]
 ---
 典型的**Android**应用包含多个应用组件，包括**Activity**、**Fragment**、**Service**、**ContentProvider**和**BroadcastReceiver**。您需要在应用清单中声明其中的大多数应用组件。**Android**操作系统随后会使用此文件来决定如何将您的应用集成到设备的整体用户体验中。鉴于典型的**Android**应用可能包含多个组件，并且用户经常会在短时间内与多个应用进行互动，因此应用需要适应不同类型的用户驱动型工作流和任务。
 
