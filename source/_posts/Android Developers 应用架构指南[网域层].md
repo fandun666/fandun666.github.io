@@ -22,7 +22,7 @@ categories: [应用架构指南]
 # 命名惯例
 动词原形 + 名词/内容（可选）+ 用例。
 
-例如：**FormatDateUseCase**、**LogOutUserUseCase**、**GetLatestNewsWithAuthorsUseCase**或**MakeLoginRequestUseCase**。
+例如：**FormatDateUseCase**,**LogOutUserUseCase**,**GetLatestNewsWithAuthorsUseCase**或**MakeLoginRequestUseCase**。
 
 # 依赖项
 在典型的应用架构中，用例类适合界面层的**ViewModel**与数据层的仓库。这意味着用例类通常依赖于仓库类，并且它们与界面层的通信方式和仓库与界面层的通信方式相同 - 使用回调（Java 代码）或协程（Kotlin 代码）。
@@ -55,8 +55,26 @@ class MyViewModel(formatDateUseCase: FormatDateUseCase) : ViewModel() {
 # 生命周期
 用例没有自己的生命周期，而是受限于使用它们的类。这意味着，您可以从界面层中的类、服务或**Application**类本身调用用例。由于用例不应包含可变数据，因此您每次将用例类作为依赖项传递时，都应该创建一个新实例。
 
+# 线程处理
+来自网域层的用例必须是主线程安全的；换句话说，从主线程调用它们必须是安全的。如果用例类执行长期运行的阻塞操作，那么它们负责将该逻辑移至适当的线程。不过，在执行此操作之前，请检查这些阻塞操作是否最好放置在层次结构的其他层中。通常，数据层中会进行复杂的计算，以支持可重用性或缓存。例如，如果某项结果需要缓存起来，以便在应用的多个屏幕上重复使用，那么在数据层中对大列表执行资源密集型操作比在网域层中执行会更好。
 
+以下示例显示了一个在后台线程上执行工作的用例：
+```kotlin
+class MyUseCase(
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
+) {
 
+    suspend operator fun invoke(...) = withContext(defaultDispatcher) {
+        // Long-running blocking operations happen on a background thread.
+    }
+}
+```
+
+# 常见任务
+## 可重复使用的简单业务逻辑
+您应将界面层中存在的可重复业务逻辑封装到用例类中。这样您就可以更轻松地在使用该逻辑的所有位置应用任何更改，以及单独测试该逻辑。
+
+以前面介绍的**FormatDateUseCase**为例。如果将来关于日期格式的业务要求发生变化，您只需在一个地方更改代码。
 > 注意：在某些情况下，用例中可能存在的逻辑可以包含在 Util 类中的静态方法内。不过，不建议采用后一种方式，因为 Util 类通常很难找到，而且其功能也很难发现。此外，用例还可以共享通用功能（例如基类中的线程处理和错误处理），这对规模较大的大型团队很有助益。
 
 ## 合并仓库
