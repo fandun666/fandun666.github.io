@@ -175,7 +175,7 @@ data class Article(
 
 该应用需要满足的要求是，当用户打开屏幕时，该应用一律需要更新最新新闻。因此，这是一项面向界面的操作。
 
-## 创建数据源
+### 创建数据源
 数据源需要公开一个用于返回最新新闻（**ArticleHeadline**实例的列表）的函数。数据源需要提供一种具有主线程安全性的方式，以便从网络获取最新新闻。为此，它需要依赖于**CoroutineDispatcher**或**Executor**来运行任务。
 
 发出网络请求是由新的 fetchLatestNews() 方法处理的一次性调用：
@@ -205,7 +205,7 @@ interface NewsApi {
 **NewsApi**接口会隐藏网络 API 客户端的实现；接口是由 Retrofit 还是由 HttpURLConnection 提供支持，并没有区别。依赖于接口能够使 API 实现在应用中可交换。
 > 要点：依赖于接口能够使 API 实现在应用中可交换。除了提供可扩缩性并可让您更轻松地替换依赖项之外，这还有利于进行测试，因为您可以在测试时注入虚构的数据源实现。
 
-## 创建存储库
+### 创建存储库
 存储库类中不需要任何额外的逻辑，即可执行此任务，因此**NewsRepository**可充当网络数据源的代理。内存中缓存部分介绍了添加这一额外抽象层的好处。
 ```kotlin
 // NewsRepository is consumed from other layers of the hierarchy.
@@ -253,7 +253,7 @@ class NewsRepository(
 }
 ```
 
-## 让操作拥有比屏幕更长的生命周期
+### 让操作拥有比屏幕更长的生命周期
 如果用户在网络请求正在进行时离开屏幕，系统将取消该请求，并且不会缓存结果。**NewsRepository**不应使用调用方的**CoroutineScope**来执行此逻辑。**NewsRepository**应使用附加到其生命周期的**CoroutineScope**。获取最新新闻必须是面向应用的操作。
 
 为了遵循依赖项注入方面的最佳实践，**NewsRepository**应在其构造函数中接收一个作用域作为参数，而不是创建自己的**CoroutineScope**。由于存储库应在后台线程中执行大部分工作，因此您应使用**Dispatchers.Default**或您自己的线程池来配置**CoroutineScope**。
