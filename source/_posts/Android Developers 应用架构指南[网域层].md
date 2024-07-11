@@ -22,7 +22,7 @@ categories: [应用架构指南]
 # 命名惯例
 动词原形 + 名词/内容（可选）+ 用例。
 
-例如：**FormatDateUseCase**,**LogOutUserUseCase**,**GetLatestNewsWithAuthorsUseCase**或**MakeLoginRequestUseCase**。
+例如：**LogOutUserUseCase**、**GetLatestNewsWithAuthorsUseCase**。
 
 # 依赖项
 在典型的应用架构中，用例类适合界面层的**ViewModel**与数据层的仓库。这意味着用例类通常依赖于仓库类，并且它们与界面层的通信方式和仓库与界面层的通信方式相同 - 使用回调（Java 代码）或协程（Kotlin 代码）。
