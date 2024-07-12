@@ -172,7 +172,7 @@ Android Studio 支持以下三种基本类型的模块：
 
 Android 模块会产生开销，因此您应当优先尽可能多地使用 Kotlin 或 Java 库。
 
-
+>模块化(modularization)：[https://developer.android.google.cn/topic/modularization/patterns?hl=zh-cn](https://developer.android.google.cn/topic/modularization/patterns?hl=zh-cn)
 
 
 

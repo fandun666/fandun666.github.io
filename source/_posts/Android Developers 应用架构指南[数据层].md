@@ -377,3 +377,5 @@ class NewsTasksDataSource(
 这些类型的类以其负责的数据命名，例如**NewsTasksDataSource**或**PaymentsTasksDataSource**。与特定类型的数据相关的所有任务都应封装在同一个类中。
 
 如果任务需要在应用启动时触发，建议使用从**Initializer**调用存储库的 App Startup 库触发 WorkManager 请求。
+
+>数据层(Data Layer)：[https://developer.android.google.cn/topic/architecture/data-layer?hl=zh-cn](https://developer.android.google.cn/topic/architecture/data-layer?hl=zh-cn)

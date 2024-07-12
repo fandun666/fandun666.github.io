@@ -164,7 +164,7 @@ categories: [应用架构]
 
 在架构方面的投入也会对您的用户产生直接积极影响。用户能从更稳定的应用中获益；同时，由于工程团队效率提高，用户还可以享受更多功能。但是，架构也需要前期时间投入。请阅读这些案例研究，了解其他公司在应用中使用良好架构的成功案例，这有助于您向公司其他人员证明时间的合理性。
 
-
+> 应用架构指南(App architecture)：[https://developer.android.google.cn/topic/architecture?hl=zh-cn](https://developer.android.google.cn/topic/architecture?hl=zh-cn)
 
 
 

@@ -279,3 +279,4 @@ Paging 库通过一个称为**PagingData**的类型在界面中使用。由于**
 为了提供流畅的顶级导航过渡，您可能需要等待第二个屏幕加载数据，然后再启动动画。Android 视图框架提供了一些钩子，以便通过**postponeEnterTransition**和**startPostponedEnterTransition** API 延迟 fragment 目的地之间的过渡。这些 API 提供了一种方法来确保做到以下一点：在界面通过动画过渡到第二个屏幕之前，第二个屏幕上的界面元素（通常是从网络获取的图片）已做好显示准备。
 
 
+>界面层(UI Layer)：[https://developer.android.google.cn/topic/architecture/ui-layer?hl=zh-cn](https://developer.android.google.cn/topic/architecture/ui-layer?hl=zh-cn)

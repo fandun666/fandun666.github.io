@@ -428,3 +428,4 @@ class SyncWorker(...) : CoroutineWorker(appContext, workerParams), Synchronizer 
 }
 ```
 
+>构建离线优先应用(offline-first app)：[https://developer.android.google.cn/topic/architecture/data-layer/offline-first?hl=zh-cn](https://developer.android.google.cn/topic/architecture/data-layer/offline-first?hl=zh-cn)

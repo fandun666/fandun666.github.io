@@ -122,3 +122,6 @@ class GetLatestNewsWithAuthorsUseCase(
 一种很好的方法是仅在需要时才添加用例。如果您发现界面层几乎完全通过用例访问数据，那么仅以这种方式访问数据可能是合理的。
 
 最终，是否限制对数据层的访问权限取决于您的具体代码库，以及您倾向于采用更严格的规则还是更灵活的方法。
+
+
+>网域层(Domain Layer)[https://developer.android.google.cn/topic/architecture/domain-layer?hl=zh-cn](https://developer.android.google.cn/topic/architecture/domain-layer?hl=zh-cn)
