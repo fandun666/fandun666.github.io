@@ -2,8 +2,7 @@
 title: Android Developers 应用架构指南[构建离线优先应用]
 date: 2024-07-11 23:00:00
 tags: [Android]
-categories: [应用架构指南]
-top: 96
+categories: [应用架构]
 ---
 离线优先应用是无需访问互联网就能执行全部核心功能或一部分关键核心功能的应用。也就是说，它可以离线执行部分或全部业务逻辑。
 
