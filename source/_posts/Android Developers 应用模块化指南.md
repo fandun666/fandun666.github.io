@@ -70,3 +70,51 @@ categories: [应用架构]
 
 # 模块间通信
 很少有模块是完全隔离的。模块之间通常相互依赖并相互通信。即使多个模块协同运行并频繁交换信息，也务必要保持低耦合。有时，与架构约束一样，两个模块之间进行直接通信是不可取的方式。此外，在使用循环依赖项等情况下，两个模块直接进行通信也是不可行的。
+
+![图 7. 使用循环依赖项时，在模块之间进行直接双向通信是不可行的。需要通过一个中介模块来协调两个其他独立模块之间的数据流。](https://developer.android.google.cn/static/topic/modularization/images/2_mediator.png?hl=zh-cn)
+
+为了克服此问题，您可以在两个模块之间使用第三个模块作为中介。中间模块可以监听来自这两个模块的消息，并根据需要转发消息。在我们的示例应用中，即使事件源自属于不同功能的单独页面，结账页面也需要知道要购买哪本图书。在这种情况下，拥有导航图的模块将充当中间模块（通常是应用模块）。在此示例中，我们使用导航组件将数据从主屏幕功能传递至结账功能。
+```kotlin
+navController.navigate("checkout/$bookId")
+```
+
+结账目标会接收图书 ID 作为参数，用于获取图书的相关信息。您可以使用已保存的状态句柄来检索目标功能的**ViewModel**内的导航参数。
+```kotlin
+class CheckoutViewModel(savedStateHandle: SavedStateHandle, …) : ViewModel() {
+
+   val uiState: StateFlow<CheckoutUiState> =
+      savedStateHandle.getStateFlow<String>("bookId", "").map { bookId ->
+          // produce UI state calling bookRepository.getBook(bookId)
+      }
+      …
+}
+```
+
+您不应将对象作为导航参数来传递，而是应使用简单的 ID，以便功能使用 ID 从数据层访问和加载所需资源。这样一来，您就可以保持低耦合，并且不会违反单一信息源原则。
+
+在以下示例中，两个功能模块均依赖于同一个数据模块。这样可以尽可能减少中间模块需要转发的数据量，并在模块之间保持低耦合。模块应传递基元 ID 并从共享数据模块加载资源，而不是传递对象。
+
+![图 8. 两个功能模块依赖于一个共享数据模块。](https://developer.android.google.cn/static/topic/modularization/images/2_shared_data.png?hl=zh-cn)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
